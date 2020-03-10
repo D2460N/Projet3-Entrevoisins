@@ -10,7 +10,7 @@ public class ShowNeighbourDetailsEvent {
     public Neighbour neighbour;
 
     /**
-     * Constructor.
+     * Constructor.k
      * @param neighbour
      */
     public ShowNeighbourDetailsEvent(Neighbour neighbour) {

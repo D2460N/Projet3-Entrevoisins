@@ -24,6 +24,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     ViewPager mViewPager;
 
     ListNeighbourPagerAdapter mPagerAdapter;
+    static final String BUNDLE_NEIGHBOUR = "BUNDLE_NEIGHBOUR";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
