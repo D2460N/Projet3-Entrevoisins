@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,23 +22,28 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity.BUNDLE_NEIGHBOUR;
+
 
 public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
-
+    private boolean isFavoritePage;
 
     /**
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+    public static NeighbourFragment newInstance(Boolean isFavorite) {
         NeighbourFragment fragment = new NeighbourFragment();
+        //Bundle //
+        Bundle args = new Bundle();
+        args.putBoolean("isFav", isFavorite);
+        fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,5 +95,15 @@ public class NeighbourFragment extends Fragment {
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
+    }
+    @Subscribe
+    public void onNeighbourDetails(ShowNeighbourDetailsEvent event) {
+        Intent neighbourDetailsIntent= new Intent(getContext(), NeighbourDetailsActivity.class);
+        neighbourDetailsIntent.putExtra(BUNDLE_NEIGHBOUR , event.neighbour);
+        startActivity(neighbourDetailsIntent);
+        // bundle (cf cours java)
+
+
+
     }
 }
