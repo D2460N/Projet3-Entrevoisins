@@ -12,7 +12,7 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
-import com.openclassrooms.entrevoisins.events.ShowNeighbourDetailsEvent;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +29,15 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
     @BindView(R.id.neighbour_avatar)
     ImageView myNeighbourAvatarUrl;
 
+    @BindView(R.id.cardview_location)
+    TextView myNeighbourAdress;
+
+    @BindView(R.id.cardview_icon_phone)
+    TextView myNeighbourPhone;
+
+    @BindView(R.id.neighbours_resume)
+    TextView myNeighbourAboutme;
+
     @BindView(R.id.neighbour_favorite_btn)
     FloatingActionButton myNeighbourFavoriteButton;
     private NeighbourApiService mApiService;
@@ -41,6 +50,10 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
         mApiService = DI.getNeighbourApiService();
         myNeighbour = (Neighbour) getIntent().getSerializableExtra(BUNDLE_NEIGHBOUR);
         myNeighbourName.setText(myNeighbour.getName());
+        myNeighbourAdress.setText(myNeighbour.getAddress());
+        myNeighbourPhone.setText(myNeighbour.getPhoneNumber());
+        myNeighbourAboutme.setText(myNeighbour.getAboutMe());
+
         Glide.with(this).load(myNeighbour.getAvatarUrl()).into(myNeighbourAvatarUrl);
         setStarColor();
         myNeighbourFavoriteButton.setOnClickListener(new View.OnClickListener() {

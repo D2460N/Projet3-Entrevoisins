@@ -16,14 +16,14 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
-import com.openclassrooms.entrevoisins.events.ShowNeighbourDetailsEvent;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-import static com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity.BUNDLE_NEIGHBOUR;
+
 
 
 public class NeighbourFragment extends Fragment {
@@ -66,7 +66,11 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        if (getArguments().getBoolean("isFav")){
+            mNeighbours = mApiService.getFavoriteNeighbours();
+        } else {
+            mNeighbours = mApiService.getNeighbours();
+        }
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
@@ -98,13 +102,8 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
     @Subscribe
-    public void onNeighbourDetails(ShowNeighbourDetailsEvent event) {
-        Intent neighbourDetailsIntent= new Intent(getContext(), NeighbourDetailsActivity.class);
-        neighbourDetailsIntent.putExtra(BUNDLE_NEIGHBOUR , event.neighbour);
-        startActivity(neighbourDetailsIntent);
-        // bundle (cf cours java)
-
-
-
+    public void onDeleteFav(DeleteNeighbourEvent event) {
+        mApiService.deleteFav(event.neighbour);
+        initList();
     }
 }

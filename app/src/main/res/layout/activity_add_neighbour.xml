@@ -15,6 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageButton
+            android:id="@+id/image_details_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/ic_back_arrow" />
+
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="100dp"
@@ -98,6 +106,7 @@
             app:cornerRadius="20dp"
             android:layout_marginTop="20dp"
             android:text="Save"/>
+
 
     </LinearLayout>
 
