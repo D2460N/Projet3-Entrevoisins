@@ -30,6 +30,8 @@ public class Neighbour implements Serializable {
 
     private boolean isFavorite;
 
+    private boolean isFavoritepage;
+
     /**
      * Constructor
      * @param id
@@ -108,6 +110,10 @@ public class Neighbour implements Serializable {
 
     public boolean isFavorite() {
         return isFavorite;
+    }
+
+    public boolean isFavoritepage() {
+        return isFavoritepage;
     }
 
     public void setFavorite(boolean favorite) {
