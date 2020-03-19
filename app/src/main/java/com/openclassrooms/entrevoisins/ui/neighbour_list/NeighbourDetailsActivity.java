@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,10 +17,12 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity.BUNDLE_NEIGHBOUR;
 
-public class NeighbourDetailsActivity extends AppCompatActivity {
+public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
+    private FloatingActionButton mFavoriteFab;
 
     Neighbour myNeighbour;
 
@@ -32,7 +35,7 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
     @BindView(R.id.cardview_location)
     TextView myNeighbourAdress;
 
-    @BindView(R.id.cardview_icon_phone)
+    @BindView(R.id.cardview_phone_number)
     TextView myNeighbourPhone;
 
     @BindView(R.id.neighbours_resume)
@@ -41,6 +44,8 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
     @BindView(R.id.neighbour_favorite_btn)
     FloatingActionButton myNeighbourFavoriteButton;
     private NeighbourApiService mApiService;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,13 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
                 mApiService.toggleFavoriteNeighbour(myNeighbour);
                 myNeighbour.setFavorite(!myNeighbour.isFavorite());
                 setStarColor();
+
+
+
+
+                ImageButton backArrow = findViewById(R.id.image_details_back_arrow);
+                backArrow.setOnClickListener(backListener);
+
             }
         });
     }
@@ -71,4 +83,11 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
         }
         else {myNeighbourFavoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);}
     }
+
+    View.OnClickListener backListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
 }
