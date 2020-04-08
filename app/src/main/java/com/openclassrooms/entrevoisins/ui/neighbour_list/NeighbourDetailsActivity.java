@@ -38,12 +38,18 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
     @BindView(R.id.cardview_phone_number)
     TextView myNeighbourPhone;
 
-    @BindView(R.id.neighbours_resume)
+    @BindView(R.id.details_user_cardview)
     TextView myNeighbourAboutme;
 
     @BindView(R.id.neighbour_favorite_btn)
     FloatingActionButton myNeighbourFavoriteButton;
     private NeighbourApiService mApiService;
+
+    @BindView(R.id.image_details_back_arrow)
+    ImageButton BackArrowButton;
+
+
+
 
 
 
@@ -71,11 +77,12 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
 
 
 
-                ImageButton backArrow = findViewById(R.id.image_details_back_arrow);
-                backArrow.setOnClickListener(backListener);
+
 
             }
         });
+        ImageButton backArrow = findViewById(R.id.image_details_back_arrow);
+        backArrow.setOnClickListener(backListener);
     }
     private void setStarColor() {
         if (myNeighbour.isFavorite()){
@@ -86,7 +93,7 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
 
     View.OnClickListener backListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
             finish();
         }
     };

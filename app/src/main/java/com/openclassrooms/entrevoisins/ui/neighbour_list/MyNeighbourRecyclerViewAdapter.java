@@ -27,8 +27,9 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     private final List<Neighbour> mNeighbours;
     private boolean isFavoritepage;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items,boolean isFavoritepage) {
         mNeighbours = items;
+        this.isFavoritepage = isFavoritepage;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (neighbour.isFavoritepage()) {
+                if (isFavoritepage) {
                     EventBus.getDefault().post(new DeleteFavNeighbourEvent(neighbour));
                 }
 

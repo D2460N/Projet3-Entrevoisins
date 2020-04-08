@@ -5,10 +5,10 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 public class DeleteFavNeighbourEvent {
 
 
-        public Neighbour isFavorite;
+        public Neighbour neighbour;
 
 
         public DeleteFavNeighbourEvent(Neighbour neighbour) {
-            this.isFavorite = neighbour;
+            this.neighbour = neighbour;
         }
 }

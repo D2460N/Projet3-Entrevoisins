@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DDE7EE"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <RelativeLayout
         android:id="@+id/neighbours_header"
         android:layout_width="match_parent"
@@ -40,7 +41,10 @@
             android:padding="16dp"
             android:src="@drawable/ic_back_arrow" />
 
+
     </RelativeLayout>
+
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/contact_cardview"
@@ -145,7 +149,7 @@
                 android:layout_below="@id/neighbours_resume"
                 android:text="Description de l'utilisateur"
                 style="@style/Neighbours_Details_Cardview"
-                android:textSize="5sp"/>
+                android:textSize="15sp"/>
 
 
 

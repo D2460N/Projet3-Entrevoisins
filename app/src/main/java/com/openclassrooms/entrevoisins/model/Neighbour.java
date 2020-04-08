@@ -30,7 +30,6 @@ public class Neighbour implements Serializable {
 
     private boolean isFavorite;
 
-    private boolean isFavoritepage;
 
     /**
      * Constructor
@@ -112,9 +111,6 @@ public class Neighbour implements Serializable {
         return isFavorite;
     }
 
-    public boolean isFavoritepage() {
-        return isFavoritepage;
-    }
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;

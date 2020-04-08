@@ -9,10 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test on Neighbour service
@@ -40,4 +42,23 @@ public class NeighbourServiceTest {
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
+
+
+    @Test
+    public void addFavoriteNeighboursWithSuccess() {
+        Neighbour neighbour = service.getNeighbours().get(0);
+        service.toggleFavoriteNeighbour(neighbour);
+        assertTrue(service.getFavoriteNeighbours().contains(neighbour));
+
+    }
+    @Test
+    public void deleteFavoriteNeighbourWithSuccess() {
+        addFavoriteNeighboursWithSuccess();
+        Neighbour neighbourToDelete = service.getFavoriteNeighbours().get(0);
+        service.deleteFav(neighbourToDelete);
+        assertFalse(service.getFavoriteNeighbours().contains(neighbourToDelete));
+    }
+
 }
+
+
