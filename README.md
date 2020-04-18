@@ -1,4 +1,4 @@
-15543713165688_icon-above-font copie
+
 EntreVoisins
 Est une application qui permet à des personnes d’un même quartier de se rendre des petits services.
 
