@@ -25,6 +25,8 @@ public class Neighbour implements Serializable {
     /** Phone number */
     private String phoneNumber;
 
+    private String website;
+
     /** About me */
     private String aboutMe;
 
@@ -38,23 +40,25 @@ public class Neighbour implements Serializable {
      * @param avatarUrl
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
-                     String phoneNumber, String aboutMe, boolean isFavorite) {
+                     String phoneNumber,String website, String aboutMe, boolean isFavorite) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.website = website;
         this.aboutMe = aboutMe;
         this.isFavorite = isFavorite;
     }
 
     public Neighbour(long id, String name, String avatarUrl, String address,
-                     String phoneNumber, String aboutMe) {
+                     String phoneNumber,String website, String aboutMe) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.website = website;
         this.aboutMe = aboutMe;
 
     }
@@ -97,6 +101,14 @@ public class Neighbour implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getAboutMe() {

@@ -3,6 +3,8 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,7 +28,7 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
 
     Neighbour myNeighbour;
 
-    @BindView(R.id.my_neighbour_name)
+    @BindView(R.id.cardview_name)
     TextView myNeighbourName;
 
     @BindView(R.id.neighbour_avatar)
@@ -38,6 +40,9 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
     @BindView(R.id.cardview_phone_number)
     TextView myNeighbourPhone;
 
+    @BindView(R.id.cardview_network_adress)
+    TextView myNeighbourWebsite;
+
     @BindView(R.id.details_user_cardview)
     TextView myNeighbourAboutme;
 
@@ -45,9 +50,10 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
     FloatingActionButton myNeighbourFavoriteButton;
     private NeighbourApiService mApiService;
 
-    @BindView(R.id.image_details_back_arrow)
-    ImageButton BackArrowButton;
 
+
+@BindView(R.id.toolbar)
+    Toolbar myToolbar;
 
 
 
@@ -60,10 +66,14 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
         ButterKnife.bind(this);
         mApiService = DI.getNeighbourApiService();
         myNeighbour = (Neighbour) getIntent().getSerializableExtra(BUNDLE_NEIGHBOUR);
+        myToolbar.setTitle(myNeighbour.getName());
         myNeighbourName.setText(myNeighbour.getName());
         myNeighbourAdress.setText(myNeighbour.getAddress());
         myNeighbourPhone.setText(myNeighbour.getPhoneNumber());
+        myNeighbourWebsite.setText(myNeighbour.getWebsite());
         myNeighbourAboutme.setText(myNeighbour.getAboutMe());
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Glide.with(this).load(myNeighbour.getAvatarUrl()).into(myNeighbourAvatarUrl);
         setStarColor();
@@ -81,8 +91,7 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
 
             }
         });
-        ImageButton backArrow = findViewById(R.id.image_details_back_arrow);
-        backArrow.setOnClickListener(backListener);
+
     }
     private void setStarColor() {
         if (myNeighbour.isFavorite()){
@@ -91,10 +100,19 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
         else {myNeighbourFavoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);}
     }
 
-    View.OnClickListener backListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == android.R.id.home)
+        {
             finish();
+            return true;
         }
-    };
+
+
+        return super.onOptionsItemSelected(item);
+    }
 }
