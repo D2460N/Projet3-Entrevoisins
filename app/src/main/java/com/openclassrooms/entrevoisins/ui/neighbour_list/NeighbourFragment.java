@@ -25,8 +25,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 
-
-
 public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
@@ -36,6 +34,7 @@ public class NeighbourFragment extends Fragment {
 
     /**
      * Create and return a new instance
+     *
      * @return @{@link NeighbourFragment}
      */
     public static NeighbourFragment newInstance(Boolean isFavorite) {
@@ -46,6 +45,7 @@ public class NeighbourFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,7 @@ public class NeighbourFragment extends Fragment {
     private void initList() {
         boolean isFavoritePage = false;
 
-        if (getArguments().getBoolean("isFav")){
+        if (getArguments().getBoolean("isFav")) {
             mNeighbours = mApiService.getFavoriteNeighbours();
             isFavoritePage = true;
         } else {
@@ -98,6 +98,7 @@ public class NeighbourFragment extends Fragment {
 
     /**
      * Fired if the user clicks on a delete button
+     *
      * @param event
      */
     @Subscribe
@@ -105,6 +106,7 @@ public class NeighbourFragment extends Fragment {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
+
     @Subscribe
     public void onDeleteFav(DeleteFavNeighbourEvent event) {
         mApiService.deleteFav(event.neighbour);

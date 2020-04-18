@@ -15,6 +15,7 @@ import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.ShowNeighbourDetailsEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.events.DeleteFavNeighbourEvent;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     private final List<Neighbour> mNeighbours;
     private boolean isFavoritepage;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items,boolean isFavoritepage) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean isFavoritepage) {
         mNeighbours = items;
         this.isFavoritepage = isFavoritepage;
     }
@@ -53,10 +54,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             public void onClick(View v) {
                 if (isFavoritepage) {
                     EventBus.getDefault().post(new DeleteFavNeighbourEvent(neighbour));
-                }
-
-                else
-                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+                } else
+                    EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
 

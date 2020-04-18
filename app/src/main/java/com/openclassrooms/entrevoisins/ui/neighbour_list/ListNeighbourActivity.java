@@ -45,6 +45,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -64,8 +65,8 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
     @Subscribe
     public void onNeighbourDetails(ShowNeighbourDetailsEvent event) {
-        Intent neighbourDetailsIntent= new Intent(this, NeighbourDetailsActivity.class);
-        neighbourDetailsIntent.putExtra(BUNDLE_NEIGHBOUR , event.neighbour);
+        Intent neighbourDetailsIntent = new Intent(this, NeighbourDetailsActivity.class);
+        neighbourDetailsIntent.putExtra(BUNDLE_NEIGHBOUR, event.neighbour);
         startActivity(neighbourDetailsIntent);
     }
 }

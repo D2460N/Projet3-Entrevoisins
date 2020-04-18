@@ -23,8 +23,8 @@ import butterknife.ButterKnife;
 
 import static com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity.BUNDLE_NEIGHBOUR;
 
-public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
-    private FloatingActionButton mFavoriteFab;
+public class NeighbourDetailsActivity extends AppCompatActivity {
+
 
     Neighbour myNeighbour;
 
@@ -50,13 +50,8 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
     FloatingActionButton myNeighbourFavoriteButton;
     private NeighbourApiService mApiService;
 
-
-
-@BindView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar myToolbar;
-
-
-
 
 
     @Override
@@ -84,20 +79,17 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
                 myNeighbour.setFavorite(!myNeighbour.isFavorite());
                 setStarColor();
 
-
-
-
-
-
             }
         });
 
     }
+
     private void setStarColor() {
-        if (myNeighbour.isFavorite()){
+        if (myNeighbour.isFavorite()) {
             myNeighbourFavoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
+        } else {
+            myNeighbourFavoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
         }
-        else {myNeighbourFavoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);}
     }
 
 
@@ -106,8 +98,7 @@ public class NeighbourDetailsActivity<fabListener> extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if (id == android.R.id.home)
-        {
+        if (id == android.R.id.home) {
             finish();
             return true;
         }

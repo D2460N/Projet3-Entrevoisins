@@ -11,6 +11,7 @@ public class ShowNeighbourDetailsEvent {
 
     /**
      * Constructor.k
+     *
      * @param neighbour
      */
     public ShowNeighbourDetailsEvent(Neighbour neighbour) {
