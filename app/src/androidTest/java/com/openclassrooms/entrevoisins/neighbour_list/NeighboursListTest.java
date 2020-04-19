@@ -28,7 +28,6 @@ import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAsserti
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
-
 /**
  * Test class for list of neighbours
  */
@@ -56,7 +55,7 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_shouldNotBeEmpty() {
         // First scroll to the position that needs to be matched and click on it.
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .check(matches(hasMinimumChildCount(1)));
     }
 
@@ -66,46 +65,44 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT));
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT-1));
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(ITEMS_COUNT - 1));
     }
 
     @Test
-    public void myNeighbourDetails () {
+    public void myNeighbourDetails() {
 
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
         onView(ViewMatchers.withId(R.id.cardview_name)).check(matches(isDisplayed()));
 
 
-
-
     }
 
     @Test
-    public void myNeighboursFavoriteList_shouldBeEmpty () {
+    public void myNeighboursFavoriteList_shouldBeEmpty() {
         onView(ViewMatchers.withText(R.string.tab_favorites_title)).perform(ViewActions.click());
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .check(withItemCount(0));
 
     }
 
     @Test
-    public void myNeighboursFavoriteList_shouldHaveOneElement () {
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT));
+    public void myNeighboursFavoriteList_shouldHaveOneElement() {
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(ITEMS_COUNT));
 
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
         onView(ViewMatchers.withId(R.id.neighbour_favorite_btn)).perform(ViewActions.click());
         Espresso.pressBack();
 
 
         onView(ViewMatchers.withText(R.string.tab_favorites_title)).perform(ViewActions.click());
-        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .check(withItemCount(1));
 
     }
